@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block title%} Blog de Noticias{% endblock %}
-{% block content%}
+{% block content %}
 <div class="columns">
     <div class="column is-offset-3 is-6">
-		    <a  href="{{ url_for('add_post') }}" class="button is-success"><i class="fa-solid fa-plus"></i> &nbsp; Agregar noticia</a>
+        <a href="{{ url_for('add_post') }}" class="button is-success"><i class="fa-solid fa-plus"></i> &nbsp; Agregar noticia</a>
         <br><br>        
         {% for post in posts %}
         <div class="card">
@@ -16,10 +16,21 @@
                 </div>
                 <div class="content">
                     {{ post.content }}
-                    </div>
+                </div>
+                <br>
+                <div class="buttons">
+                    <!-- Botón de actualizar -->
+                    <a href="{{ url_for('update_post', id=post.id) }}" class="button is-warning">
+                        <i class="fa-solid fa-pen"></i> &nbsp; Actualizar
+                    </a>
+                    <!-- Botón de eliminar -->
+                    <a href="{{ url_for('delete_post', id=post.id) }}" class="button is-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar esta noticia?');">
+                        <i class="fa-solid fa-trash"></i> &nbsp; Eliminar
+                    </a>
+                </div>
             </div>
         </div>
         {% endfor %}
     </div>
 </div>
-{% endblock%}
+{% endblock %}
